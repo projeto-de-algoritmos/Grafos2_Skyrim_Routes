@@ -1,0 +1,33 @@
+Origem,Destino,Peso
+Dawnstar,Morthal,30
+Dawnstar,Nightgate Inn,15
+Dawnstar,Winterhold,20
+Morthal,Solitude,15
+Solitude,DragonBrigde,5
+DragonBrigde,Mor Kharzgur,10
+DragonBrigde,Karthwasten,6
+DragonBrigde,Rorikstead,13
+Mor Kharzgur,Karthwasten,6
+Mor Kharzgur,Markarth,12
+Karthwasten,Markarth,8
+Karthwasten,Dushnikh Yal,10
+Karthwasten,Rorikstead,7
+Dushnikh Yal,Markarth,7
+Dushnikh Yal,Rorikstead,9
+Dushnikh Yal,Falkreath,45
+Whiterun,Riverwood,8
+Whiterun,Rorikstead,25
+Whiterun,Nightgate Inn,21
+Whiterun,Ivarstead,23
+Helgen,Riverwood,6
+Helgen,Falkreath,4
+Ivarstead,Narzulbur,20
+Ivarstead,Shor's Stone,18
+Ivarstead,Largashbur,13
+Riften,Largashbur,4
+Riften,Shor's Stone,3
+Narzulbur,Shor's Stone,18
+Narzulbur,Windhelm,8
+Windhelm,Winterhold,13
+Windhelm,Nightgate Inn,17
+Winterhold,Nightgate Inn,12
