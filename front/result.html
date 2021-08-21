@@ -23,14 +23,17 @@
 
         <div align="center" class="mb-5">
 
+            {% if path | length > 0%}
             <h3> <span class="badge bg-secondary">O melhor caminho de {{start}} para {{target}} é:</span></h3>
-
             <ol style="width: 30%">
-                {% for i in path %}
-                    <li>{{i}}</li>
-                    </br>
-                {% endfor %}
+                    {% for i in path %}
+                        <li>{{i}}</li>
+                        </br>
+                    {% endfor %}
             </ol>
+            {% else %}
+            <h3> <span class="badge bg-secondary">Você já está em {{start}} !</span></h3>
+            {% endif %}
 
 
         </div>
