@@ -1,5 +1,6 @@
 import pandas as pd
 from flask import Flask, json, render_template,request
+import cv2
 
 from graphclass import Graph
 from dijkstra import shortest_path
@@ -12,29 +13,40 @@ edges = []
 for i, row in df.iterrows():
     edges.append((row.Origem, row.Destino, row.Peso))
 
+graph = Graph(edges=edges, directed=False)
 
-grafo = Graph(edges=edges, directed=False)
+def position_finder(paths):
+    positions = pd.read_csv('./static/positions.csv')
+    result = []
+
+    for i,city in enumerate(paths[:-1]):
+        if i < len(paths[:-1]) - 1:
+            current = positions.query(f"city == '{city}'")
+            the_next = positions.query(f"city == '{paths[i+1]}'")
+            first = (int(current['width']), int(current['heigth']))
+            second = (int(the_next['width']), int(the_next['heigth']))
+            result.append((first, second))
+    return result
 
 @app.route('/', methods=["GET","POST"])
 def index():
     if request.method == "GET":
-        vertices = grafo.get_vertices()
+        vertices = graph.get_vertices()
         return render_template("index.html",vertices=vertices)
     else:
-        pass
-        # target = str(request.form.get('target')).replace("_"," ")
-        # dependent = get_dependents(grafo, target)
-        # # dependent[0] = [i for i in dependent[0] if i != '']
-        #
-        # if '' in dependent[0]:
-        #     dependent[0] = ['Nenhuma matéria' for i in dependent[0] if i == '']
-        #
-        # if '' in dependent[1]:
-        #     for i,value in enumerate(dependent[1]):
-        #         if value == '':
-        #             delete_element(dependent[1],i )
-        #
-        # dependencie = get_dependencies(grafo, target)
-        # return render_template('list.html', target=target, dependent=dependent, dependencies=dependencie)
+        start = str(request.form.get('start')).replace("_"," ")
+        target = str(request.form.get('target')).replace("_"," ")
+
+        path = shortest_path(graph, start,target)
+
+        image = cv2.imread('./static/images/city.jpg')
+
+        points = position_finder(path)
+
+        for i in points:
+            cv2.line(image, i[0], i[1], (0,0,255), 2)
+        cv2.imwrite("./static/images/path.jpg", image)
+
+        return render_template('result.html', path=path)
 
 app.run(debug=True)
