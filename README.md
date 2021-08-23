@@ -16,7 +16,17 @@ esses pesos consistem no tempo que se levaria no deslocamento, sempre levando em
 ## Screenshots
 
 ### Rotas
+
 ![routes](static/images/routes.jpg)
+
+### Home do projeto
+
+![print da home](static/images/screen1.jpg)
+
+### Pagina de resultados
+
+![print da home](static/images/screen2.jpg)
+
 ## Instalação 
 **Linguagem**: Python<br>
 **Framework**: Flask<br>
@@ -28,5 +38,5 @@ pip install flask pandas
 ```
 
 ``` bash
-python src/main.py
+python main.py
 ```
